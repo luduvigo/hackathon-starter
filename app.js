@@ -1,6 +1,11 @@
 var MongoClient = require('mongodb').MongoClient;
 var express = require('express'),
-		app = express();
+		app = express(),
+		cons = require('consolidate');
+
+app.engine('html', cons.swig);
+app.set('view engine', 'html');
+app.set('views', __dirname + "/views");
 
 
 MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
@@ -23,7 +28,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 });
 
 app.get('/', function(req, res){
-	res.send("Hello, World");
+	res.render('hello', { 'name' : 'Swig'} );
 });
 
 app.get('*', function(req, res){
