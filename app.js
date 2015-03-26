@@ -1,4 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
+var express = require('express'),
+		app = express();
+
 
 MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 	if (err) throw err;
@@ -18,3 +21,15 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 	console.dir("Called findOne");
 
 });
+
+app.get('/', function(req, res){
+	res.send("Hello, World");
+});
+
+app.get('*', function(req, res){
+	res.status(404).send("Page not found");
+});
+
+
+app.listen(8080);
+console.log("Express server started on port 8080");
