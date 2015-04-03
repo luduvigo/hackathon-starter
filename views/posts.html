@@ -19,7 +19,17 @@
 	</div>
 	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js'></script>
 	<script>
-		angular.module('app', [])
+		var app = angular.module('app', [])
+			app.controller('PostsCtrl', function($scope) {
+				$scope.posts = [
+					{
+						username : 'luduvigo', body : 'Prova Angular'
+					},
+					{
+						username : 'luduvigo', body : 'Prova Angular 2'
+					}
+			]
+		})
 	</script>
 </body>
 </html>
