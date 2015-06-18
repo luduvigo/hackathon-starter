@@ -5,35 +5,50 @@
 </head>	
 <body ng-app="app">
 	<div ng-controller="PostsCtrl" class="container">
-		<h1>Recent Posts</h1>
-		<button ng-click="addPost()" class="btn btn-default">Add Post</button>
+		<h1>Cosa vuoi fare?</h1>
+		<form role="form">
+			<div class="form-group">
+				Dicci cosa ti piacerebbe fare ora.
+				<div class="input-group">
+					<input ng-model="postBody" class="form-control" />
+					<span class="input-group-btn">
+						<button ng-click="addPost()" class="btn btn-default">Aggiungi desiderio</button>
+					</span>
+				</div>
+			</div>		
+		</form>
+		
 		<ul class="list-group">
 			<li ng-repeat="post in posts" class="list-group-item">
-				<strong>{{post.username}}</strong>
+				<strong>@{{post.username}}</strong>
 				<span>{{post.body}}</span>
 			</li>
 		</ul>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
 	<script>
+		//Create local app module
 		var app = angular.module("app", [])
+		//Create the PostCtrl module 
+		//dependency inject $scope
 		app.controller("PostsCtrl", function($scope) {
+			//the function runs when the Add post button is clicked
+			$scope.addPost = function() {
+				if($scope.postBody){
+					$scope.posts.unshift({
+						username: "luduvigo",
+						body: $scope.postBody
+					})
+					$scope.postBody = null
+				}
+			}
 			$scope.posts = [
 				{
-					username: "luduvigo",
-					body: "Test 1"
-				},
-				{
-					username: "paoloantoniorossi",
-					body: "Wathaaa"
+					username: "paolo",
+					body: "Mi piacerebbe andare a fare aperitivo in centro stasera."
+
 				}
 			]
-			$scope.addPost = function() {
-				$scope.posts.unshift({
-					username: "Abbestia",
-					body: "baooo"
-				})
-			}
 		})	
 	</script>
 </body>
