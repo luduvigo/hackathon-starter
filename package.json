@@ -1,0 +1,7 @@
+{
+  "name": "hackathon-starter",
+  "dependencies": {
+    "express": "~4.12.4",
+    "body-parser": "~1.13.1"
+  }
+}
