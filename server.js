@@ -6,7 +6,13 @@ var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", function (req, res){
+	console.log("call main page")
+	res.sendfile("layouts/posts.html")	
+})
+
 app.get("/api/posts", function (req, res, next){
+	console.log("Post get")
 	Post.find(function(err, posts){
 		if (err) {return next(err)}	
 		res.json(posts)

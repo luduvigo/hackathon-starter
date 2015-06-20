@@ -20,8 +20,8 @@
 		
 		<ul class="list-group">
 			<li ng-repeat="post in posts" class="list-group-item">
-				<strong>@{{post.username}}</strong>
-				<span>{{post.body}}</span>
+				<strong>@{{ post.username }}</strong>
+				<span>{{ post.body }}</span>
 			</li>
 		</ul>
 	</div>
@@ -31,24 +31,17 @@
 		var app = angular.module("app", [])
 		//Create the PostCtrl module 
 		//dependency inject $scope
-		app.controller("PostsCtrl", function($scope) {
+		app.controller("PostsCtrl", function($scope, $http) {
 			//the function runs when the Add post button is clicked
 			$scope.addPost = function() {
 				if($scope.postBody){
-					$scope.posts.unshift({
-						username: "luduvigo",
-						body: $scope.postBody
-					})
+					$http.get("http://localhost:3000/api/posts")
+						.success(function (posts){
+							$scope.posts = posts				
+						})
 					$scope.postBody = null
 				}
 			}
-			$scope.posts = [
-				{
-					username: "paolo",
-					body: "Mi piacerebbe andare a fare aperitivo in centro stasera."
-
-				}
-			]
 		})	
 	</script>
 </body>
