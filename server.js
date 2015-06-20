@@ -1,5 +1,6 @@
 var express = require("express")
 var bodyParser = require("body-parser")
+var Post = require("./models/post")
 
 var app = express()
 app.use(bodyParser.json())
@@ -12,7 +13,6 @@ app.get("/api/posts", function (req, res, next){
 	})
 })
 
-var Post = require("./models/post")
 app.post("/api/posts", function(req, res, next){
 	console.log("post received")
 	console.log(req.body.username)
