@@ -13,7 +13,7 @@ app.get("/", function (req, res){
 
 app.get("/api/posts", function (req, res, next){
 	console.log("Post get")
-	Post.find(function(err, posts){
+	Post.find().sort('-date').exec(function(err, posts){
 		if (err) {return next(err)}	
 		res.json(posts)
 	})
