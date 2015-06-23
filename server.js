@@ -7,11 +7,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/posts", require("./controllers/api/posts"))
-
-app.get("/", function (req, res){
-	console.log("call main page")
-	res.sendfile("layouts/posts.html")	
-})
+app.use(require("./controllers/static"))
 
 app.listen(3000, function() {
 	console.log("Server listening on", 3000)
