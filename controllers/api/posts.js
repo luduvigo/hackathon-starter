@@ -1,7 +1,7 @@
 var Post = require("../../models/post")
 var router = require("express").Router()
 
-router.get("/api/posts", function (req, res, next){
+router.get("/", function (req, res, next){
 	console.log("Post get")
 	Post.find().sort('-date').exec(function(err, posts){
 		if (err) {return next(err)}	
@@ -9,7 +9,7 @@ router.get("/api/posts", function (req, res, next){
 	})
 })
 
-router.post("/api/posts", function(req, res, next){
+router.post("/", function(req, res, next){
 	console.log("post received")
 	console.log(req.body.username)
 	console.log(req.body.body)

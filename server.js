@@ -6,7 +6,7 @@ var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(require("./controllers/api/posts"))
+app.use("/api/posts", require("./controllers/api/posts"))
 
 app.get("/", function (req, res){
 	console.log("call main page")
