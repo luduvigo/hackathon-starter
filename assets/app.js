@@ -1,12 +1,22 @@
 //Create local app module
 var app = angular.module("app", [])
+
+app.service("PostsSvc", function($http){
+	this.fetch = function() {
+		return $http.get("/api/posts")
+	}
+	this.create = function(post){
+		return $http.post("/api/posts", post)	
+	}
+})
+
 //Create the PostCtrl module 
 //dependency inject $scope
-app.controller("PostsCtrl", function($scope, $http) {
+app.controller("PostsCtrl", function($scope, PostsSvc) {
 	//the function runs when the Add post button is clicked
 	$scope.addPost = function() {
 		if($scope.postBody){
-			$http.post("/api/posts", {
+			PostsSvc.create({
 				username: "luduvigo",
 				body: $scope.postBody})
 			.success(function (post){
@@ -15,7 +25,7 @@ app.controller("PostsCtrl", function($scope, $http) {
 			})
 		}
 	}
-	$http.get("/api/posts").success(
+	PostsSvc.fetch().success(
 		function (posts) {
 			$scope.posts = posts	
 		})
