@@ -21,3 +21,7 @@ gulp.task('js', function(){
 gulp.task('watch:js', ['js'], function () {
     gulp.watch('ng/**/*.js', ['js'])
 })
+
+gulp.task('watch:css', ['css'], function () {
+    gulp.watch('gulp/**/*.styl', ['css'])
+})
