@@ -22,7 +22,7 @@ app.post('/session', function (req, res){
     if(!validateUser(user, req.body.password)){
         return res.send(401)
     }
-    var token = jwt.encode({username : username}, secretKey)
+    var token = jwt.encode({username : user.username}, secretKey)
     res.json(token)
 })
 
