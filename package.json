@@ -1,6 +1,7 @@
 {
   "name": "hackathon-starter",
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "body-parser": "~1.13.1",
     "express": "~4.12.4",
     "gulp": "^3.9.0",

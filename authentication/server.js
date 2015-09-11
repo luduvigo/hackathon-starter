@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt')
 var app = express()
 app.use(require('body-parser').json())
 
-var users = [{username : 'luduvigo', password: 'password'}]
+var users = [{username : 'luduvigo', password: '$2a$10$t7N8vGO9vs1AkdtCcfH6Ee1iqKeqJ/piM4kgX4J0hMavyTSX//xDS'}]
 
 var secretKey = 'supersecretkey'
 
