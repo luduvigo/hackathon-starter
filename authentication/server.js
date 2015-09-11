@@ -1,7 +1,7 @@
 var express = require('express')
 var jwt = require('jwt-simple')
 var _ = require('lodash')
-
+var bcrypt = require('bcrypt')
 var app = express()
 app.use(require('body-parser').json())
 
@@ -14,7 +14,7 @@ function findUserByUsername(username) {
 }
 
 function validateUser(user, password) {
-    return user.password = password
+    return bcrypt.compareSync(password, user.password)
 }
 
 app.post('/session', function (req, res){
